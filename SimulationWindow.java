@@ -1,25 +1,18 @@
 import java.awt.*;
 import javax.swing.*;
 
-public class SimulationWindow {
+public class SimulationWindow extends JFrame{
 
     private int frameWidth = 900;
     private int frameHeight = 600;
 
-    private int gridSize = 15;
-
-    private JFrame frame;
-
-
     public void initFrame(){
-        
-        frame = new JFrame("Langton's Ant Simulation");
-        frame.setSize(frameWidth, frameHeight);
-        frame.setBackground(Color.BLACK);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(new Grid());
-        frame.setVisible(true);
-
+        this.setTitle("Langton's Ant Simulation");
+        this.setSize(frameWidth, frameHeight);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.add(new GridPanel());
+        this.setLayout(null);
+        this.setVisible(true);
     }
 
 }

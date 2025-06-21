@@ -1,5 +1,23 @@
 public class SimulationController {
 
+    private Ant ant;
+    private GridPanel grid;
+
+    public void initSimulationController(){
+        this.grid = new GridPanel();
+        int[] dimensions = grid.getDimensions();
+        this.ant = new Ant(dimensions[0]/2, dimensions[1]/2);
+    }
+
+     public void simulationStep(){
+        ant.move();
+        int[] antPosition = ant.getPosition();
+        grid.changeSquareColour(antPosition[0], antPosition[1]);
+        ant.changeDirection(grid.getGridValue(antPosition));
+     }
+
+
+
     public static void main(String[] args){
         // SimulationWindow window = new SimulationWindow();
         // window.initFrame();
@@ -13,14 +31,24 @@ public class SimulationController {
         // ant.turnClockwise();
         // ant.printDirection();
 
-        GridPanel grid = new GridPanel();
+        // GridPanel grid = new GridPanel();
 
-        grid.printgridLocation(0,0);
-        grid.printgridLocation(1,0);
-        grid.changeSquareColour(1, 0);
-        grid.printgridLocation(1, 0);
-        grid.printGrid();
+        // grid.printgridLocation(0,0);
+        // grid.printgridLocation(1,0);
+        // grid.changeSquareColour(1, 0);
+        // grid.printgridLocation(1, 0);
+        // grid.printGrid();
 
+        SimulationController controller = new SimulationController();
+
+        controller.initSimulationController();
+
+        controller.simulationStep();
+        controller.simulationStep();
+        controller.simulationStep();
+        controller.simulationStep();
+        controller.simulationStep();
+        controller.simulationStep();
 
     }
 }

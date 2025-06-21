@@ -5,8 +5,8 @@ import java.awt.*;
 public class GridPanel extends JPanel{
     private int gridSize = 20;
 
-    private int numberOfColumns = 30;
-    private int numberOfRows = 20;
+    private int numberOfColumns = 10;
+    private int numberOfRows = 10;
 
     private int panelWidth = gridSize * numberOfColumns;
     private int panelHeight = gridSize * numberOfRows;
@@ -45,5 +45,13 @@ public class GridPanel extends JPanel{
         for (int j=0; j<numberOfRows+1; j++){
             graphcis.drawLine(0, j*gridSize, numberOfColumns*gridSize, j*gridSize);
         }
+    }
+
+    public int[] getDimensions(){
+        return new int[] {numberOfColumns, numberOfRows};
+    }
+
+    public int getGridValue(int[] position){
+        return grid[position[1]][position[0]];
     }
 }

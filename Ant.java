@@ -1,12 +1,23 @@
 import java.util.Arrays;
 
 public class Ant {
-    // private int xPos;
-    // private int yPos;
+    private int[] position = new int[2];
 
     private int[] direction = new int[] {0, 1};
     private final int[][] turnClockwise = new int[][]{{0, 1},{-1, 0}};
     private final int[][] turnAnticlockwise = new int[][]{{0, -1},{1, 0}};
+
+    Ant(int initialXPosition, int initialYPosition){
+        this.position[0] = initialXPosition;
+        this.position[1] = initialYPosition;
+    }
+
+    public void move(){
+
+        // TODO: handle the boundary
+        this.position[0] = this.position[0] + this.direction[0];
+        this.position[1] = this.position[1] + this.direction[1];
+    }
 
     private int[] vectorMatrixMultiplication(int[] vector, int[][] matrix){
         int[] result = new int[2];
@@ -15,6 +26,14 @@ public class Ant {
         result[1] = matrix[1][0] * vector[0] + matrix[1][1] * vector[1];
 
         return result;
+    }
+
+    public void changeDirection(int locationValue){
+        if (locationValue == 1){
+            turnAnticlockwise();
+        } else {
+            turnClockwise();
+        }
     }
 
     public void turnClockwise(){
@@ -27,6 +46,10 @@ public class Ant {
 
     public void printDirection(){
         System.out.println(Arrays.toString(direction));
+    }
+
+    public int[] getPosition(){
+        return this.position;
     }
      
 }

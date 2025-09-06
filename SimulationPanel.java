@@ -46,4 +46,8 @@ public class SimulationPanel extends JPanel {
         graphics.fillRect(position[0] * SimulationConfig.gridSize, position[1] * SimulationConfig.gridSize, SimulationConfig.gridSize, SimulationConfig.gridSize);
     }
 
+    public void update() {
+        repaint();
+    }
+
 }

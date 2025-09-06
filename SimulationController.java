@@ -1,44 +1,38 @@
 public class SimulationController {
 
+    private boolean runSimulation = false;
+
     private Ant ant;
-    // private GridPanel grid;
+    private Grid grid;
     private SimulationPanel simulationPanel;
+    private SimulationWindow window;
 
-    // public void initSimulationController(){
-    //     this.grid = new GridPanel();
-    //     int[] dimensions = grid.getDimensions();
-    //     this.ant = new Ant(dimensions[0]/2, dimensions[1]/2);
-    //     this.simulationPanel = new SimulationPanel();
-    // }
-
-    //  public void simulationStep(){
-    //     ant.move();
-    //     int[] antPosition = ant.getPosition();
-    //     grid.changeSquareColour(antPosition[0], antPosition[1]);
-    //     ant.changeDirection(grid.getGridValue(antPosition));
-    //     // grid.printGrid();
-    //  }
-
-
-
-    public static void main(String[] args){
-
-        Ant ant = new Ant((int) (SimulationConfig.numberOfColumns/2), (int) (SimulationConfig.numberOfRows/2));
-
-        SimulationWindow window = new SimulationWindow();
-        
-        SimulationPanel simulationPanel = new SimulationPanel(ant);
-
+    public void initSimulationController(){
+        this.grid = new Grid();
+        this.ant = new Ant((int) (SimulationConfig.numberOfColumns/2), (int) (SimulationConfig.numberOfRows/2));
+        this.simulationPanel = new SimulationPanel(ant);
+        this.window = new SimulationWindow();
         window.setPanel(simulationPanel);
         window.initFrame();
+    }
 
-        SimulationController controller = new SimulationController();
+     public void simulationStep(){
+        ant.move();
+        int[] antPosition = ant.getPosition();
+        grid.changeSquareColour(antPosition[0], antPosition[1]);
+        ant.changeDirection(grid.getGridValue(antPosition));
+        // grid.printGrid();
+     }
 
-        // controller.initSimulationController();
+    public void run() throws InterruptedException {
 
-        // for (int i=1; i<10; i++){
-        //     controller.simulationStep();
-        // }
+        initSimulationController();
+        runSimulation = true;
+        while (runSimulation){
+            simulationStep();
+            simulationPanel.update();
+            Thread.sleep(1000);
+        }
 
     }
 }

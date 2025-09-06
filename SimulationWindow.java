@@ -1,4 +1,3 @@
-import java.awt.*;
 import javax.swing.*;
 
 public class SimulationWindow extends JFrame{
@@ -10,9 +9,15 @@ public class SimulationWindow extends JFrame{
         this.setTitle("Langton's Ant Simulation");
         this.setSize(frameWidth, frameHeight);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
         this.add(new GridPanel());
         this.setLayout(null);
         this.setVisible(true);
+        this.setLocationRelativeTo(null);
+    }
+
+    public void drawSquare(){
+
     }
 
 }

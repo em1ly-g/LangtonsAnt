@@ -14,13 +14,14 @@ public class SimulationController {
         int[] antPosition = ant.getPosition();
         grid.changeSquareColour(antPosition[0], antPosition[1]);
         ant.changeDirection(grid.getGridValue(antPosition));
+        // grid.printGrid();
      }
 
 
 
     public static void main(String[] args){
-        // SimulationWindow window = new SimulationWindow();
-        // window.initFrame();
+        SimulationWindow window = new SimulationWindow();
+        window.initFrame();
 
         // Ant ant = new Ant();
         // ant.printDirection();
@@ -43,12 +44,9 @@ public class SimulationController {
 
         controller.initSimulationController();
 
-        controller.simulationStep();
-        controller.simulationStep();
-        controller.simulationStep();
-        controller.simulationStep();
-        controller.simulationStep();
-        controller.simulationStep();
+        for (int i=1; i<10; i++){
+            controller.simulationStep();
+        }
 
     }
 }

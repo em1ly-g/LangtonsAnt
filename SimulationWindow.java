@@ -10,11 +10,14 @@ public class SimulationWindow extends JFrame{
         this.setSize(frameWidth, frameHeight);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
-        this.add(new SimulationPanel());
         // this.setLayout(null);
         // this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+    }
+
+    public void setPanel(SimulationPanel panel){
+        this.add(panel);
     }
 
 }

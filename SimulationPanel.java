@@ -6,9 +6,12 @@ public class SimulationPanel extends JPanel {
     private int panelWidth = SimulationConfig.gridSize * SimulationConfig.numberOfColumns;
     private int panelHeight = SimulationConfig.gridSize * SimulationConfig.numberOfRows;
 
-    public SimulationPanel(){
+    private Ant ant;
+
+    public SimulationPanel(Ant ant){
         this.setBounds(0, 0, panelWidth, panelHeight);
         this.setBackground(Colours.backgroundColor);
+        this.ant = ant;
     }
 
     @Override
@@ -39,12 +42,8 @@ public class SimulationPanel extends JPanel {
 
     private void drawAnt(Graphics graphics) {
         graphics.setColor(Colours.ant);
-        graphics.fillRect(0, 0, SimulationConfig.gridSize, SimulationConfig.gridSize);
+        int[] position = ant.getPosition();
+        graphics.fillRect(position[0] * SimulationConfig.gridSize, position[1] * SimulationConfig.gridSize, SimulationConfig.gridSize, SimulationConfig.gridSize);
     }
 
-    
-
-
-
-    
 }

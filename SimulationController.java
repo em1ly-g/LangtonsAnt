@@ -22,7 +22,14 @@ public class SimulationController {
 
 
     public static void main(String[] args){
+
+        Ant ant = new Ant((int) (SimulationConfig.numberOfColumns/2), (int) (SimulationConfig.numberOfRows/2));
+
         SimulationWindow window = new SimulationWindow();
+        
+        SimulationPanel simulationPanel = new SimulationPanel(ant);
+
+        window.setPanel(simulationPanel);
         window.initFrame();
 
         SimulationController controller = new SimulationController();

@@ -10,7 +10,7 @@ public class SimulationController {
     public void initSimulationController(){
         this.grid = new Grid();
         this.ant = new Ant((int) (SimulationConfig.numberOfColumns/2), (int) (SimulationConfig.numberOfRows/2));
-        this.simulationPanel = new SimulationPanel(ant);
+        this.simulationPanel = new SimulationPanel(ant, grid);
         this.window = new SimulationWindow();
         window.setPanel(simulationPanel);
         window.initFrame();
@@ -31,7 +31,7 @@ public class SimulationController {
         while (runSimulation){
             simulationStep();
             simulationPanel.update();
-            Thread.sleep(1000);
+            Thread.sleep(200);
         }
 
     }

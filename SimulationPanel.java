@@ -7,26 +7,28 @@ public class SimulationPanel extends JPanel {
     private int panelHeight = SimulationConfig.gridSize * SimulationConfig.numberOfRows;
 
     private Ant ant;
+    private Grid grid;
 
-    public SimulationPanel(Ant ant){
+    public SimulationPanel(Ant ant, Grid grid) {
         this.setBounds(0, 0, panelWidth, panelHeight);
         this.setBackground(Colours.backgroundColor);
         this.ant = ant;
+        this.grid = grid;
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         draw(g);
-
     }
 
     private void draw(Graphics graphics) {
-        drawGrid(graphics);
+        drawGridLines(graphics);
+        drawTiles(graphics);
         drawAnt(graphics);
     }
 
-    private void drawGrid(Graphics graphics) {
+    private void drawGridLines(Graphics graphics) {
 
         graphics.setColor(Colours.simulationBackground);
         graphics.fillRect(0, 0, panelWidth, panelHeight);
@@ -44,6 +46,18 @@ public class SimulationPanel extends JPanel {
         graphics.setColor(Colours.ant);
         int[] position = ant.getPosition();
         graphics.fillRect(position[0] * SimulationConfig.gridSize, position[1] * SimulationConfig.gridSize, SimulationConfig.gridSize, SimulationConfig.gridSize);
+    }
+
+    private void drawTiles(Graphics graphics) {
+        graphics.setColor(Colours.tile);
+        for (int x=0; x<SimulationConfig.numberOfColumns; x++) {
+            for (int y=0; y<SimulationConfig.numberOfRows; y++) {
+                int tile = grid.getGridValue(new int[] {x, y});
+                if (tile == 1) {
+                    graphics.fillRect(x * SimulationConfig.gridSize, y * SimulationConfig.gridSize, SimulationConfig.gridSize, SimulationConfig.gridSize);
+                }
+            }
+        }
     }
 
     public void update() {
